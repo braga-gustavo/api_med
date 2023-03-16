@@ -6,6 +6,7 @@
  **/
 package med.voll.med.controller;
 
+import jakarta.validation.Valid;
 import med.voll.med.doctor.DoctorRegistrationData;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,4 +15,8 @@ import org.springframework.web.bind.annotation.*;
 public class DoctorController {
 
 
+    @PostMapping
+    public void doctorRegistration(@RequestBody @Valid DoctorRegistrationData doctorRegistrationData){
+
+    }
 }
