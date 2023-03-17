@@ -6,7 +6,7 @@
  **/
 package med.voll.med.doctor;
 
-public enum Especialty {
+public enum Specialty {
 
     ORTOPEDIA,
     CARDIOLOGIA,

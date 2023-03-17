@@ -7,12 +7,10 @@
 package med.voll.med.address;
 
 import jakarta.persistence.Embeddable;
-import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.web.service.annotation.GetExchange;
 
 @Embeddable
 @NoArgsConstructor
@@ -37,4 +35,14 @@ public class Address {
 
     String number;
     String complement;
+
+    public Address(AddressData addressData) {
+        this.streetAddress = addressData.streetAddress();
+        this.neighborhood = addressData.neighborhood();
+        this.cep = addressData.cep();
+        this.city = addressData.city();
+        this.uf = addressData.uf();
+        this.number = addressData.number();
+        this.complement = addressData.complement();
+    }
 }

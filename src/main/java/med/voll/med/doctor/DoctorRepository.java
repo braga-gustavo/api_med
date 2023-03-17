@@ -8,5 +8,5 @@ package med.voll.med.doctor;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface DoctorRepsitory extends JpaRepository<Doctor, Long> {
+public interface DoctorRepository extends JpaRepository<Doctor, Long> {
 }

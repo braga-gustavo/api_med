@@ -7,16 +7,13 @@
 package med.voll.med.doctor;
 
 import jakarta.persistence.*;
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import med.voll.med.address.Address;
-import med.voll.med.address.AddressData;
 
 import java.io.Serializable;
 
@@ -34,19 +31,24 @@ public class Doctor implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
     String name;
-
-    @NotBlank @Email
     String email;
-
-    @NotBlank
+    String phone;
     String crm;
 
     @Enumerated(EnumType.STRING)
-    Especialty specialty;
+    Specialty specialty;
 
     @Embedded
     Address address;
 
+    public Doctor(DoctorRegistrationData doctorRegistrationData) {
+
+        this.name = doctorRegistrationData.name();
+        this.email = doctorRegistrationData.email();
+        this.phone = doctorRegistrationData.phone();
+        this.crm = doctorRegistrationData.crm();
+        this.specialty = doctorRegistrationData.specialty();
+        this.address = new Address(doctorRegistrationData.address());
+    }
 }
