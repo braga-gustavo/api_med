@@ -31,16 +31,16 @@ public class Doctor implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    String name;
-    String email;
-    String phone;
-    String crm;
+    private String name;
+    private String email;
+    private String phone;
+    private String crm;
 
     @Enumerated(EnumType.STRING)
-    Specialty specialty;
+    private Specialty specialty;
 
     @Embedded
-    Address address;
+    private Address address;
 
     public Doctor(DoctorRegistrationData doctorRegistrationData) {
 

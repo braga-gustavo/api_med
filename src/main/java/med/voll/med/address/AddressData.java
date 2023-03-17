@@ -12,12 +12,12 @@ import jakarta.validation.constraints.Pattern;
 public record AddressData(
 
         @NotBlank
-        String streetAddress,
+        String street_address,
 
         @NotBlank
         String neighborhood,
 
-        @NotBlank @Pattern(regexp = "\\d(8)")
+        @NotBlank @Pattern(regexp = "\\d{8}")
         String cep,
 
         @NotBlank

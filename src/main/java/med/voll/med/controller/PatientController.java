@@ -6,19 +6,25 @@
  **/
 package med.voll.med.controller;
 
+import jakarta.validation.Valid;
 import med.voll.med.doctor.DoctorRegistrationData;
+import med.voll.med.patient.Patient;
 import med.voll.med.patient.PatientRegistrationData;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import med.voll.med.patient.PatientRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "/patients")
 public class PatientController {
 
+    @Autowired
+    PatientRepository patientRepository;
+
     @PostMapping
-    public void patientRegistration(@RequestBody PatientRegistrationData patientRegistrationData){
-        System.out.println(patientRegistrationData);
+    @ResponseStatus(HttpStatus.CREATED)
+    public void patientRegistration(@RequestBody@Valid PatientRegistrationData patientRegistrationData){
+        patientRepository.save(new Patient(patientRegistrationData));
     }
 }

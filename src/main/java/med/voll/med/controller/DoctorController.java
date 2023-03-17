@@ -11,6 +11,7 @@ import med.voll.med.doctor.Doctor;
 import med.voll.med.doctor.DoctorRegistrationData;
 import med.voll.med.doctor.DoctorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -21,7 +22,8 @@ public class DoctorController {
     DoctorRepository doctorRepository;
 
     @PostMapping
-    public void doctorRegistration(@RequestBody @Valid DoctorRegistrationData doctorRegistrationData){
+    @ResponseStatus(HttpStatus.CREATED)
+    public void doctorRegistration(@RequestBody @Valid DoctorRegistrationData doctorRegistrationData) {
         doctorRepository.save(new Doctor(doctorRegistrationData));
 
     }

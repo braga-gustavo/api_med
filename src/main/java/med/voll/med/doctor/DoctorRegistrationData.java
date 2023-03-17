@@ -21,7 +21,7 @@ public record DoctorRegistrationData(
         @NotBlank @Email
         String email,
 
-        @NotBlank @Pattern(regexp = "\\d(4,6)")
+        @NotBlank @Pattern(regexp = "\\d{4,6}")
         String crm,
 
         @NotBlank

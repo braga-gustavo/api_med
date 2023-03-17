@@ -37,7 +37,7 @@ public class Address {
     String complement;
 
     public Address(AddressData addressData) {
-        this.streetAddress = addressData.streetAddress();
+        this.streetAddress = addressData.street_address();
         this.neighborhood = addressData.neighborhood();
         this.cep = addressData.cep();
         this.city = addressData.city();
