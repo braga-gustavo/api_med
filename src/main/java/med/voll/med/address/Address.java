@@ -45,4 +45,29 @@ public class Address {
         this.number = addressData.number();
         this.complement = addressData.complement();
     }
+
+    public void updateData(AddressData addressData) {
+
+        if (addressData.street_address() != null)
+            this.streetAddress = addressData.street_address();
+
+        if (addressData.street_address() != null)
+            this.neighborhood = addressData.neighborhood();
+
+        if (addressData.street_address() != null)
+            this.cep = addressData.cep();
+
+        if (addressData.street_address() != null)
+            this.city = addressData.city();
+
+        if (addressData.street_address() != null)
+            this.uf = addressData.uf();
+
+        if (addressData.street_address() != null)
+            this.number = addressData.number();
+
+        if (addressData.street_address() != null)
+            this.complement = addressData.complement();
+
+    }
 }

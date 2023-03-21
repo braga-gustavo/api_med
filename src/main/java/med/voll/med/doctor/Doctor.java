@@ -36,6 +36,8 @@ public class Doctor implements Serializable {
     private String phone;
     private String crm;
 
+    private Boolean active;
+
     @Enumerated(EnumType.STRING)
     private Specialty specialty;
 
@@ -44,11 +46,27 @@ public class Doctor implements Serializable {
 
     public Doctor(DoctorRegistrationData doctorRegistrationData) {
 
+        this.active = true;
         this.name = doctorRegistrationData.name();
         this.email = doctorRegistrationData.email();
         this.phone = doctorRegistrationData.phone();
         this.crm = doctorRegistrationData.crm();
         this.specialty = doctorRegistrationData.specialty();
         this.address = new Address(doctorRegistrationData.address());
+    }
+
+    public void updateDoctorData(DoctorDataToUpdate doctorDataToUpdate) {
+        if (doctorDataToUpdate.name() != null)
+            this.name = doctorDataToUpdate.name();
+
+        if (doctorDataToUpdate.phone() != null)
+            this.phone = doctorDataToUpdate.phone();
+
+        if (doctorDataToUpdate.address() != null)
+            address.updateData(doctorDataToUpdate.address());
+    }
+
+    public void inactivate() {
+        this.active = false;
     }
 }

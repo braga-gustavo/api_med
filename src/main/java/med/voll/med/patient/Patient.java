@@ -36,15 +36,33 @@ public class Patient implements Serializable {
     private String phone;
     private String cpf;
 
+    private Boolean active;
+
     @Embedded
     private Address address;
 
     public Patient(PatientRegistrationData patientRegistrationData) {
+        this.active = true;
         this.name = patientRegistrationData.name();
         this.email = patientRegistrationData.email();
         this.phone = patientRegistrationData.phone();
         this.cpf = patientRegistrationData.cpf();
         this.address = new Address(patientRegistrationData.address());
 
+    }
+
+    public void updatePatientData(PatientDataToUpdate patientDataToUpdate) {
+        if (patientDataToUpdate.name() != null)
+            this.name = patientDataToUpdate.name();
+
+        if (patientDataToUpdate.phone() != null)
+            this.phone = patientDataToUpdate.phone();
+
+        if (patientDataToUpdate.address() != null)
+            address.updateData(patientDataToUpdate.address());
+    }
+
+    public void inactivate() {
+        this.active = false;
     }
 }
