@@ -8,17 +8,20 @@ package med.voll.med.doctor;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
+import med.voll.med.address.Address;
 import med.voll.med.address.AddressData;
 
 public record DoctorDataToUpdate(
 
-                @NotNull Long id,
+        @NotNull
+        Long id,
 
-                String name,
+        String name,
 
-                String phone,
+        String phone,
 
-                @Valid AddressData address
+        @Valid
+        AddressData address
 
 ) {
 }
