@@ -14,7 +14,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping(value = "/patients")
@@ -26,8 +28,14 @@ public class PatientController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     @Transactional
-    public void patientRegistration(@RequestBody @Valid PatientRegistrationData patientRegistrationData) {
-        patientRepository.save(new Patient(patientRegistrationData));
+    public ResponseEntity patientRegistration(@RequestBody @Valid PatientRegistrationData patientRegistrationData, UriComponentsBuilder uriComponentsBuilder) {
+        var patient = new Patient(patientRegistrationData);
+        patientRepository.save(patient);
+
+        var uri = uriComponentsBuilder.path("/patients/{id}").buildAndExpand(patient.getId()).toUri();
+
+        return ResponseEntity.created(uri).body(new PatientListingData(patient));
+
     }
 
     @GetMapping
@@ -53,4 +61,13 @@ public class PatientController {
         var patient = patientRepository.getReferenceById(id);
         patient.inactivate();
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity detailPatient(@PathVariable Long id) {
+        var patient = patientRepository.getReferenceById(id);
+       
+        return ResponseEntity.ok(new PatientListingData(patient));
+    }
+
+
 }
