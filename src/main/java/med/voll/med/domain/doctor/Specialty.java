@@ -4,7 +4,7 @@
  * Time :19:36
  * Project Name :med
  **/
-package med.voll.med.doctor;
+package med.voll.med.domain.doctor;
 
 public enum Specialty {
 

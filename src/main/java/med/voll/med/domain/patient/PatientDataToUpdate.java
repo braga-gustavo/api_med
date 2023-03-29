@@ -1,17 +1,16 @@
 /**
  * @author :Gustavo
  * Date :21/03/2023
- * Time :17:47
+ * Time :16:30
  * Project Name :med
  **/
-package med.voll.med.doctor;
+package med.voll.med.domain.patient;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
-import med.voll.med.address.Address;
-import med.voll.med.address.AddressData;
+import med.voll.med.domain.address.AddressData;
 
-public record DoctorDataToUpdate(
+public record PatientDataToUpdate(
 
         @NotNull
         Long id,
@@ -21,7 +20,5 @@ public record DoctorDataToUpdate(
         String phone,
 
         @Valid
-        AddressData address
-
-) {
+        AddressData address) {
 }

@@ -4,7 +4,7 @@
  * Time :13:43
  * Project Name :med
  **/
-package med.voll.med.patient;
+package med.voll.med.domain.patient;
 
 
 import jakarta.persistence.*;
@@ -12,7 +12,7 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import med.voll.med.address.Address;
+import med.voll.med.domain.address.Address;
 
 import java.io.Serializable;
 

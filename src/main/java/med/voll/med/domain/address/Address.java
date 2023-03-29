@@ -4,7 +4,7 @@
  * Time :17:03
  * Project Name :med
  **/
-package med.voll.med.address;
+package med.voll.med.domain.address;
 
 import jakarta.persistence.Embeddable;
 import jakarta.validation.constraints.NotBlank;

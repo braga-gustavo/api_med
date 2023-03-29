@@ -4,16 +4,14 @@
  * Time :16:56
  * Project Name :med
  **/
-package med.voll.med.doctor;
+package med.voll.med.domain.doctor;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import med.voll.med.address.Address;
+import med.voll.med.domain.address.Address;
 
 import java.io.Serializable;
 

@@ -4,7 +4,7 @@
  * Time :09:04
  * Project Name :med
  **/
-package med.voll.med.doctor;
+package med.voll.med.domain.doctor;
 
 public record DoctorListingData(Long id, String name, String email, String crm, Specialty specialty) {
 

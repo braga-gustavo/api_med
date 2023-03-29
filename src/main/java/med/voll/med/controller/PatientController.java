@@ -8,7 +8,7 @@ package med.voll.med.controller;
 
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
-import med.voll.med.patient.*;
+import med.voll.med.domain.patient.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -28,18 +28,17 @@ public class PatientController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     @Transactional
-    public ResponseEntity patientRegistration(@RequestBody @Valid PatientRegistrationData patientRegistrationData, UriComponentsBuilder uriComponentsBuilder) {
+    public ResponseEntity patientRegistration(@RequestBody @Valid PatientRegistrationData patientRegistrationData,
+                                              UriComponentsBuilder uriComponentsBuilder) {
         var patient = new Patient(patientRegistrationData);
         patientRepository.save(patient);
-
         var uri = uriComponentsBuilder.path("/patients/{id}").buildAndExpand(patient.getId()).toUri();
-
         return ResponseEntity.created(uri).body(new PatientListingData(patient));
 
     }
 
     @GetMapping
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.FOUND)
     @Transactional
     public Page<PatientListingData> patientListing(@PageableDefault(size = 10, sort = {"name"}) Pageable pageable) {
         return patientRepository.findAllByActiveTrue(pageable).map(PatientListingData::new);
@@ -56,6 +55,7 @@ public class PatientController {
     }
 
     @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
     @Transactional
     public void deletePatient(@PathVariable Long id) {
         var patient = patientRepository.getReferenceById(id);
@@ -63,9 +63,9 @@ public class PatientController {
     }
 
     @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity detailPatient(@PathVariable Long id) {
         var patient = patientRepository.getReferenceById(id);
-       
         return ResponseEntity.ok(new PatientListingData(patient));
     }
 

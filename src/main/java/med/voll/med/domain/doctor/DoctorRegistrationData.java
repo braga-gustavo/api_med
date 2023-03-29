@@ -1,19 +1,19 @@
 /**
  * @author :Gustavo
  * Date :14/03/2023
- * Time :21:14
+ * Time :19:33
  * Project Name :med
  **/
-package med.voll.med.patient;
+package med.voll.med.domain.doctor;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import med.voll.med.address.AddressData;
-import org.hibernate.validator.constraints.br.CPF;
+import jakarta.validation.constraints.Pattern;
+import med.voll.med.domain.address.AddressData;
 
-public record PatientRegistrationData(
+public record DoctorRegistrationData(
 
         @NotBlank
         String name,
@@ -21,11 +21,14 @@ public record PatientRegistrationData(
         @NotBlank @Email
         String email,
 
+        @NotBlank @Pattern(regexp = "\\d{4,6}")
+        String crm,
+
         @NotBlank
         String phone,
 
-        @NotBlank @CPF
-        String cpf,
+        @NotNull
+        Specialty specialty,
 
         @NotNull @Valid
         AddressData address) {
