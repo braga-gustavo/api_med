@@ -12,11 +12,13 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 @Embeddable
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-public class Address {
+public class Address implements Serializable {
 
     @NotBlank
     String streetAddress;

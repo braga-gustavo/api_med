@@ -4,7 +4,7 @@
  * Time :09:57
  * Project Name :med
  **/
-package med.voll.med.infra;
+package med.voll.med.infra.exception;
 
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.ResponseEntity;
