@@ -4,11 +4,10 @@
  * Time :19:06
  * Project Name :med
  **/
-package med.voll.med.controller;
+package med.voll.med.infra.security;
 
 import jakarta.validation.Valid;
-import med.voll.med.domain.users.UserRepository;
-import med.voll.med.infra.security.AuthenticationData;
+import med.voll.med.domain.users.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -25,10 +24,15 @@ public class AuthenticationController {
     @Autowired
     private AuthenticationManager authenticationManager;
 
+    @Autowired
+    private TokenService tokenService;
+
     @PostMapping
     public ResponseEntity Login(@RequestBody @Valid AuthenticationData data) {
-        var token = new UsernamePasswordAuthenticationToken(data.login(), data.password());
-        var authentication = authenticationManager.authenticate(token);
-        return ResponseEntity.ok().build();
+        var authenticationToken = new UsernamePasswordAuthenticationToken(data.login(), data.password());
+        var authentication = authenticationManager.authenticate(authenticationToken);
+
+        var tokenJWT = tokenService.generateToken((User) authentication.getPrincipal());
+        return ResponseEntity.ok(new JWTTokenData(tokenJWT));
     }
 }
