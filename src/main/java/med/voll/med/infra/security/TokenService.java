@@ -36,6 +36,20 @@ public class TokenService {
         }
     }
 
+    public String getSubject(String jwtToken) {
+        try {
+            var algorithm = Algorithm.HMAC256(secret);
+            return JWT.require(algorithm)
+                    .withIssuer()
+                    .build()
+                    .verify(jwtToken)
+                    .getSubject();
+        } catch (JWTCreationException jwtCreationException) {
+            throw new RuntimeException("JWT Inválido");
+        }
+    }
+
+
     private Instant tokenExpireDate() {
         return LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.of("-03:00"));
     }
