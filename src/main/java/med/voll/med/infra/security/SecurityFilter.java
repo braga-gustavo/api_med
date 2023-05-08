@@ -39,6 +39,7 @@ public class SecurityFilter extends OncePerRequestFilter {
 
             var authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
             SecurityContextHolder.getContext().setAuthentication(authentication);
+
         }
 
         filterChain.doFilter(request, response);
@@ -48,7 +49,7 @@ public class SecurityFilter extends OncePerRequestFilter {
 
         var authorizationHeader = request.getHeader("Authorization");
         if (authorizationHeader != null) {
-            authorizationHeader.replace("Bearer", "");
+            return authorizationHeader.replace("Bearer ", "");
         }
         return null;
     }

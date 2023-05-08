@@ -27,7 +27,7 @@ public class TokenService {
         try {
             var alogrithm = Algorithm.HMAC256(secret);
             return JWT.create()
-                    .withIssuer("Voll.med API")
+                    .withIssuer("API Voll.med")
                     .withSubject(user.getLogin())
                     .withExpiresAt(tokenExpireDate())
                     .sign(alogrithm);
@@ -40,7 +40,7 @@ public class TokenService {
         try {
             var algorithm = Algorithm.HMAC256(secret);
             return JWT.require(algorithm)
-                    .withIssuer()
+                    .withIssuer("API Voll.med")
                     .build()
                     .verify(jwtToken)
                     .getSubject();

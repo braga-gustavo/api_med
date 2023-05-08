@@ -4,8 +4,9 @@
  * Time :17:15
  * Project Name :med
  **/
-package med.voll.med.domain.users;
+package med.voll.med.infra.security;
 
+import med.voll.med.domain.users.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
