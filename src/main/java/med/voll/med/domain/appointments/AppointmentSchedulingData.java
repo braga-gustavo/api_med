@@ -4,15 +4,22 @@ import java.time.LocalDateTime;
 
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotNull;
+import med.voll.med.domain.doctor.Specialty;
 
 public record AppointmentSchedulingData(
-    Long idDoctor,
+        Long idDoctor,
 
-    @NotNull
-    Long idPatient, 
+        @NotNull
+        Long idPatient,
 
-    @NotNull
-    @Future
-    LocalDateTime date) {
+        @NotNull
+        @Future
+        LocalDateTime date,
 
+        Specialty specialty
+) {
 }
+
+
+
+

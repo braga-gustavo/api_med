@@ -8,5 +8,5 @@ package med.voll.med.domain.appointments;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface AppointmentsRepository extends JpaRepository<Appointment, Long> {
+public interface AppointmentRepository extends JpaRepository<Appointment, Long> {
 }
