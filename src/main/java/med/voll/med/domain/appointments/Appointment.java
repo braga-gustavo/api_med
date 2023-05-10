@@ -2,18 +2,12 @@ package med.voll.med.domain.appointments;
 
 import java.time.LocalDateTime;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import med.voll.med.domain.appointments.validations.cancellations.CancellationReason;
 import med.voll.med.domain.doctor.Doctor;
 import med.voll.med.domain.patient.Patient;
 
@@ -39,6 +33,12 @@ public class Appointment {
 
     private LocalDateTime date;
 
-    
+    @Column(name = "cancellation_reason")
+    @Enumerated(EnumType.STRING)
+    private CancellationReason cancellationReason;
 
+
+    public void cancel(CancellationReason reason) {
+        this.cancellationReason = reason;
+    }
 }

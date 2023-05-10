@@ -6,13 +6,13 @@
  **/
 package med.voll.med.domain.doctor;
 
-import java.time.LocalDateTime;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+
+import java.time.LocalDateTime;
 
 @Repository
 public interface DoctorRepository extends JpaRepository<Doctor, Long> {
@@ -28,9 +28,19 @@ public interface DoctorRepository extends JpaRepository<Doctor, Long> {
                 select a.doctor from Appointment a
                 where
                 a.date = :date
+               and 
+               a.cancellationReason is null
             )
             order by rand()
             limit 1 
             """)
     Doctor chooseRandomAvailableDoctorOnDate(Specialty specialty, LocalDateTime date);
+
+    @Query("""
+            select d.active 
+            from Doctor d
+            where
+            d.id = :id
+            """)
+    Boolean findActiveByID(Long id);
 }

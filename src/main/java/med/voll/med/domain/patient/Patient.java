@@ -17,7 +17,7 @@ import med.voll.med.domain.address.Address;
 import java.io.Serializable;
 
 @Table(name = "patients")
-@Entity(name = "patients")
+@Entity(name = "Patient")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter

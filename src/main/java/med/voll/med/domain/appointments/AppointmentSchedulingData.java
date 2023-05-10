@@ -1,23 +1,18 @@
 package med.voll.med.domain.appointments;
 
-import java.time.LocalDateTime;
-
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotNull;
 import med.voll.med.domain.doctor.Specialty;
 
-public record AppointmentSchedulingData(
-        Long idDoctor,
+import java.time.LocalDateTime;
 
-        @NotNull
-        Long idPatient,
+public record AppointmentSchedulingData(Long idDoctor,
 
-        @NotNull
-        @Future
-        LocalDateTime date,
+                                        @NotNull Long idPatient,
 
-        Specialty specialty
-) {
+                                        @NotNull @Future LocalDateTime date,
+
+                                        Specialty specialty) {
 }
 
 
