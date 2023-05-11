@@ -9,7 +9,9 @@ package med.voll.med.infra.security;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
+import com.auth0.jwt.exceptions.JWTVerificationException;
 import med.voll.med.domain.users.User;
+import med.voll.med.infra.exception.ValidationException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -32,7 +34,7 @@ public class TokenService {
                     .withExpiresAt(tokenExpireDate())
                     .sign(alogrithm);
         } catch (JWTCreationException exception) {
-            throw new RuntimeException("Error generating JWT Token", exception);
+            throw new RuntimeException("Error while generating JWT toke", exception);
         }
     }
 
@@ -44,8 +46,8 @@ public class TokenService {
                     .build()
                     .verify(jwtToken)
                     .getSubject();
-        } catch (JWTCreationException jwtCreationException) {
-            throw new RuntimeException("JWT Inválido");
+        } catch (JWTVerificationException exception) {
+            throw new RuntimeException("Invalid or expired JWT token");
         }
     }
 
