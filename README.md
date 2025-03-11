@@ -53,14 +53,4 @@ The server will be running at `http://localhost:8080`.
 - **GET /doctors/{id}** → Retrieve a doctor's details.
 - **DELETE /appointments/{id}** → Cancel an appointment.
 
-## 🤝 Contribution
-If you wish to contribute, follow these steps:
-1. **Fork** the repository.
-2. Create a **branch** for your feature (`git checkout -b feature/new-feature`).
-3. **Commit** your changes (`git commit -m 'Adding new feature'`).
-4. **Push** the branch (`git push origin feature/new-feature`).
-5. Open a **Pull Request**.
-
-## 📄 License
-This project is open-source and licensed under the **MIT License**.
-
+#
